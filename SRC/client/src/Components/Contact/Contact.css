@@ -1,0 +1,201 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contact-container{
+    background: linear-gradient(to right, #465b85 30%, #1c3552 30%);
+
+    width: 100%;
+    height: 100vh;
+
+    text-align: center;
+    color: white;
+}
+
+.contact-container h1{
+    padding-top: 2rem;
+    width: 12%;
+    margin: auto;
+    border-bottom: solid 1px white;
+}
+
+
+.contact{
+    width: 100%;
+    height: 90%;
+    
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    width: 50%;
+    height: 80%;
+    margin: 0.5%;
+    background-color: #D4ECDD;
+    color: #0F4C75;
+    padding: 2% 0% 0% 2%;
+    text-align: left;
+    border-radius: 2px;
+
+    font-weight: 800;
+}
+
+/* .form-container h3{
+    color: #054896;
+} */
+
+form .input-full-name, form .input-contact{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+}
+
+.name-container, .last-name-container, .email-container, .phone-container, .message{
+    display: flex;
+    flex-direction: column;
+}
+
+.name-container, .last-name-container, .email-container, .phone-container{
+    width: 50%;
+    padding: 2% 5% 2% 0%;
+}
+
+.message{
+    width: 100%;
+    padding: 2% 5% 2% 0%;
+}
+
+form input{
+    padding: 3%;
+}
+
+form input, form textarea{
+    border-radius: 2px;
+
+    margin-top: 1%;
+    border: solid 1px rgb(165, 156, 156);
+    resize: none;
+}
+
+form input:focus, form textarea:focus{
+    outline: none;
+    
+}
+
+.message textarea{
+    padding: 1%;
+}
+
+.send-message{
+    border: none;
+    outline: none;
+
+    border-radius: 3px;
+    padding: 1.5% 5%;
+    background-color: #5C7AEA;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+.contact-data-container{
+    width: 30%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    margin: 0.5%;
+}
+
+.contact-data{
+    width: 100%;
+    height: 50%;
+
+    padding: 5% 0% 0% 5%;
+
+    text-align: left;
+    border-radius: 2px;
+    background-color: #465b85;
+    color: white;
+    margin: 0% 0% 2% 2%;
+}
+
+.contact-data h3{
+    padding-bottom: 5%;
+}
+
+.contact-data a{
+    color: white;
+}
+
+.address, .my-email, .cel-phone, .tel-phone, .red-social{
+    padding: 1% 0% 1% 0%;
+    font-size: 1.05rem;
+}
+
+.address, .my-email, .cel-phone, .tel-phone{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.address span, .my-email span, .cel-phone span, .tel-phone span{
+    padding-left: 2%;
+}
+
+/* .address ion-icon, .my-email ion-icon, .cel-phone ion-icon, .tel-phone ion-icon{
+    background-color: #1c3552;
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 50%;
+
+} */
+
+.cel-ico, .address-ico, .mail-ico{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1c3552;
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 50%;
+}
+
+.red-social{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding-top: 1%;
+}
+
+.red-social a{
+    margin: 2%;
+    font-size: 2rem;
+}
+
+
+.contact-location{
+    width: 100%;
+    height: 50%;
+
+    margin: 2% 0% 0% 2%;
+}
+
+.contact-location .map{
+    width: 100%;
+    height: 100%;
+
+    border: none;
+}
