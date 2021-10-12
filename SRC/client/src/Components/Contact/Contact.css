@@ -176,7 +176,7 @@ form input:focus, form textarea:focus{
 .red-social{
     width: 100%;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     padding-top: 1%;
 }
 

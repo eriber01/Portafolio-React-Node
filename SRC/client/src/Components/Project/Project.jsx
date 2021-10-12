@@ -1,7 +1,7 @@
 import React from 'react'
 import './Project.css'
 
-export default function Project() {
+const Project = ()=> {
     
     return (
         <div className='project' id='project'>
@@ -77,3 +77,5 @@ export default function Project() {
         </div>
     )
 }
+
+export default Project

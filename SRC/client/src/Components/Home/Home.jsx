@@ -1,9 +1,20 @@
-import React from 'react'
+import {useEffect} from 'react'
 import './Home.css'
+import axios from 'axios'
 
-export default function Home() {
+
+const Home = ()=> {
     
-    
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: '/api',
+            responseType: 'stream'
+        })
+        .then((response) =>{
+            console.log(response.data);
+        })
+    }, [])
     
     return (
         <div className='app-container'>
@@ -37,3 +48,5 @@ export default function Home() {
         </div>
     )
 }
+
+export default Home

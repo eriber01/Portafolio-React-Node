@@ -1,7 +1,7 @@
 import React from 'react'
 import './Skill.css'
 
-export default function Skill() {
+const Skill = () => {
     return (
         <div className='skill-container' id='skill'>
             <h1>Skill</h1>
@@ -20,3 +20,5 @@ export default function Skill() {
         </div>
     )
 }
+
+export default Skill
