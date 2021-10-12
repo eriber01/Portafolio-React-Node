@@ -2,12 +2,12 @@ const express = require('express')
 
 const Routes = express.Router()
 
-const SendMails = require('../Mail/Nodemailer')
+const SendMails = require('../Controllers/Mail/Nodemailer')
 
 Routes.get('/', async (req, res)=>{
     res.send({
-        name:'nose',
-        apellido: 'que se yo'
+        Name:'Eriber',
+        Apellidos: 'Tejeda Amparo'
     })
 
     //await SendMails()
