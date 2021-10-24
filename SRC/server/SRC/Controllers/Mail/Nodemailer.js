@@ -1,6 +1,6 @@
 const Nodemailer = require('nodemailer')
 
-const SendMails = async () =>{
+const SendMails = async (emailData) =>{
 
     const transporter = Nodemailer.createTransport({
         service: 'gmail',
@@ -13,14 +13,14 @@ const SendMails = async () =>{
     const MailData = {
         from: 'eriber01@gmail.com',
         to: 'eriber01@gmail.com',
-        subject: `Mensaje desde el Portafolios asunto: prueva`,
+        subject: `Message from the Portfolio`,
 
         text: ` 
-            Nombre: nombre prueva,
-            Apellido: apellido prueva,
-            Email: email prueva,
-            Telefono: telefono prueva,
-            Message: message prueva
+            Name: ${emailData.name},
+            Last Name: ${emailData.lastname},
+            Email: ${emailData.email},
+            Phone: ${emailData.phone},
+            Message: ${emailData.message}
         `
     }
 

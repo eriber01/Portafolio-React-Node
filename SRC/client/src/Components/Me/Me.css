@@ -8,6 +8,7 @@
 
     background-color: #000000;
     color: white;
+
 }
 
 .me-container h1{
@@ -18,6 +19,33 @@
     text-shadow: black 5px 2px 5px;
 }
 
+/* move top div me */
+.me{
+    transform: translateY(-100%);
+    transition: all 500ms ease;
+}
+
+/* move left the backend div */
+.backend{
+    transform: translateX(-150%);
+}
+
+/* move right the frontend div */
+.frontend{
+    transform: translateX(150%);
+}
+
+/* move all div to translate 0% */
+
+.move-all{
+    
+    transition: all 1000ms ease;
+
+    transform: translateX(0);
+    transform: translateY(0);
+
+}
+
 .me-container .me-card-container{
     width: 100%;
     height: auto;
@@ -26,6 +54,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    overflow: hidden;
 }
 
 .me-card-tec{

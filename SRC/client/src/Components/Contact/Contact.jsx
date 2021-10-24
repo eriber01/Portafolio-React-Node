@@ -2,6 +2,7 @@ import {useState} from 'react'
 import SendEmail from '../../Services/SendEmail'
 import './Contact.css'
 
+import swal from 'sweetalert'
 
 const Contact = ()=> {
 
@@ -13,11 +14,48 @@ const Contact = ()=> {
         message: ''
     })
 
-
-    const SendMessage = (eve)=>{
+    const MessageManage = async (eve)=>{
         eve.preventDefault()
 
-        SendEmail(mailData)
+        swal({
+            title: 'Send Message',
+            text: 'Are you sure to send the message?',
+            icon: 'warning',
+            buttons: ['Cancel', 'Send']
+        }).then(res =>{
+            if (res) {
+                SendMessage()
+                swal({text: "se envio el mensaje" , icon: 'success', timer:'2000'})
+            }else{
+                swal({text: "Cancelaste el mensaje" , icon: 'warning', timer:'2000'})
+            }
+        })
+    }
+
+    const SendMessage = async ()=>{
+        /* eve.preventDefault() */
+
+        await SendEmail(mailData)
+            .then(res =>{
+
+                if (res.status === 'false') {
+                    if (res.input === 'name') {
+                        setmailData({...mailData, name: ''})
+                    }else if(res.input === 'lastname'){
+                        setmailData({...mailData, lastname: ''})
+                    }else if(res.input === 'email'){
+                        setmailData({...mailData, email: ''})
+                    }else if(res.input === 'phone'){
+                        setmailData({...mailData, phone: ''})
+                    }else if(res.input === 'message'){
+                        setmailData({...mailData, message: ''})
+                    }
+                }else {
+                    setmailData({...mailData, name: '', lastname: '', email: '', phone: '', message: ''})
+                }
+            })
+
+
     }
 
     return (
@@ -28,13 +66,14 @@ const Contact = ()=> {
             <div className='contact'>
                 <div className='form-container'>
                     <h3>Send a Message</h3>
-                    <form onSubmit={SendMessage} action="" autoComplete='off'>
+                    <form onSubmit={MessageManage} action="" autoComplete='off'>
                         <div className='input-full-name'>
                             <div className='name-container'>
                                 <label htmlFor="name">Fist Name</label>
                                 <input onChange={(eve)=> setmailData({...mailData, name: eve.target.value})} 
                                     className='name' required={true} placeholder='Example: Juan' type="text" 
                                     name="" id="name"
+                                    value = {mailData.name}
                                 />
                             </div>
                             
@@ -43,6 +82,7 @@ const Contact = ()=> {
                                 <input onChange={(eve)=> setmailData({...mailData, lastname: eve.target.value})}
                                     className='last-name' required={true} placeholder='Example: Perez' type="text"
                                     name="" id="last-name"
+                                    value = {mailData.lastname}
                                 />
                             </div>
                         </div>
@@ -53,6 +93,7 @@ const Contact = ()=> {
                                 <input onChange={(eve)=> setmailData({...mailData, email: eve.target.value})} 
                                     className='email' required={true} placeholder='Example: email@email.com' 
                                     type="email" name="" id="email" 
+                                    value = {mailData.email}
                                 />
                             </div>
                         
@@ -60,7 +101,8 @@ const Contact = ()=> {
                                 <label htmlFor="telephone">Telephone</label>
                                 <input onChange={(eve)=> setmailData({...mailData, phone: eve.target.value})} 
                                     className='telephone' required={true} placeholder='Phone Number' name="" 
-                                    type="tel" id="telephone" 
+                                    type="tel" id="telephone"
+                                    value = {mailData.phone}
                                 />
                             </div>
                         </div>
@@ -70,6 +112,7 @@ const Contact = ()=> {
                             <textarea onChange={(eve)=> setmailData({...mailData, message: eve.target.value})}
                                 name="" required={true} placeholder='Write you Message here' ols="30" rows="10" 
                                 id="message"
+                                value = {mailData.message}
                             ></textarea>
                         </div>
 

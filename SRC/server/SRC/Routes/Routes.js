@@ -9,9 +9,13 @@ Routes.get('/', async (req, res)=>{
         Name:'Eriber',
         Apellidos: 'Tejeda Amparo'
     })
-
-    //await SendMails()
 })
 
+Routes.post('/', async (req, res)=>{
+    const emailData = await req.body.data
+    /* console.log(emailData.name); */
+
+    await SendMails(emailData)
+})
 
 module.exports = Routes

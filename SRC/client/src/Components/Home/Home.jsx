@@ -1,20 +1,6 @@
-import {useEffect} from 'react'
 import './Home.css'
-import axios from 'axios'
-
 
 const Home = ()=> {
-    
-    useEffect(() => {
-        axios({
-            method: 'get',
-            url: '/api',
-            responseType: 'stream'
-        })
-        .then((response) =>{
-            console.log(response.data);
-        })
-    }, [])
     
     return (
         <div className='app-container'>
@@ -35,12 +21,12 @@ const Home = ()=> {
                         <h3>JavaScript FullStack Developer</h3>
                     </div>
 
-                    <div className="img-me">
+{                    <div className="img-me">
                         <span>"Esta imagen es temporal claro que se cambiara"</span>
                         <img src="img/img-me.jpg" alt="" />
-                    </div>
+                    </div>}
                     <div className='desCV'>
-                        <button><a href="file/Min Eriber Tejeda CV.pdf" target='_blank'>Downloaded CV</a></button>
+                        <button ><a href="file/Min Eriber Tejeda CV.pdf" target='_blank'>Downloaded CV</a></button>
                     </div>
                 </header>
                 
