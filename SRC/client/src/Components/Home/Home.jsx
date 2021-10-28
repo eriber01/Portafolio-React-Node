@@ -26,7 +26,7 @@ const Home = ()=> {
                         <img src="img/img-me.jpg" alt="" />
                     </div>}
                     <div className='desCV'>
-                        <button ><a href="file/Min Eriber Tejeda CV.pdf" target='_blank'>Downloaded CV</a></button>
+                        <button ><a href="file/CV Ingles Eriber Tejeda Amparo.pdf" target='_blank'>Downloaded CV</a></button>
                     </div>
                 </header>
                 

@@ -1,8 +1,18 @@
-import React from 'react'
+import {React, useState} from 'react'
 import './Project.css'
+
+import {useHistory} from 'react-router-dom'
 
 const Project = ()=> {
     
+    const History = useHistory()
+
+    const [state, setstate] = useState([])
+
+    const linkProject = ()=>{
+        History.push('/projectDetails')
+    }
+
     return (
         <div className='project' id='project'>
             <h1>Projects</h1>
@@ -23,7 +33,7 @@ const Project = ()=> {
                     </div>
 
                     <div className='project-menu'>
-                        <button>View Details</button>
+                        <button onClick={linkProject}>View Details</button>
                         <button>View Code in Github</button>
                         <button>Open project</button>
                     </div>
