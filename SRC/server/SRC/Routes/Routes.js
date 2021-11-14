@@ -14,8 +14,13 @@ Routes.get('/', async (req, res)=>{
 Routes.post('/', async (req, res)=>{
     const emailData = await req.body.data
     /* console.log(emailData.name); */
+    console.log(emailData);
+    /* await SendMails(emailData) */
+})
 
-    await SendMails(emailData)
+Routes.post('/login', async (req, res)=>{
+    const loginData = await req.body.data
+    console.log(loginData);
 })
 
 module.exports = Routes
