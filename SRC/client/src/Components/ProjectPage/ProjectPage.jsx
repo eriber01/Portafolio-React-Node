@@ -1,16 +1,18 @@
-
 import './ProjectPage.css'
 
 const ProjectPage = () =>{
 
     return (
-        <div className='project-container'>
+        <div id='project' className='project-container'>
+        
             <nav className='nav-container'>
                 <ul>
                     <li><a href="/">HOME</a></li>
                 </ul>
             </nav>
+            
             <h1>Project Name</h1>
+            
             <div className='project-details-container'>
                 
                 <div className='project-image'>

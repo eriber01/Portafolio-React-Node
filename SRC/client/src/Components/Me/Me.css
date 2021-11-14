@@ -6,13 +6,13 @@
     flex-direction: column;
     align-items: center;
 
+    padding-bottom: 2rem;
     background-color: #000000;
     color: white;
 
 }
 
 .me-container h1{
-    width: 20%;
     border-bottom: solid 2px white;
     margin: 2rem;
     font-size: 3rem;
@@ -94,4 +94,40 @@
 
 .me-card-container p{
     font-size: 1.02rem;
+}
+
+
+
+/* Responsive*/
+@media only screen and (max-width: 980px){
+
+    .me{
+        width: 85%;
+    }
+
+    .me-container{
+        transition: all 800ms ease;
+        padding-bottom: 2rem;
+    }
+
+    .me-container h1{
+        width: auto;
+    }
+
+    .me, .frontend, .backend{
+        height: auto;
+        width: auto;
+        margin: 0;
+    }
+
+    .frontend, .backend{
+        transition-delay: 1s;
+    }
+
+    .me-card-tec{
+        flex-direction: column;
+        height: auto;
+    }
+
+
 }

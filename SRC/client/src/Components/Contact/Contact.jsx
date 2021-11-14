@@ -1,8 +1,8 @@
 import {useState} from 'react'
-import SendEmail from '../../Services/SendEmail'
 import './Contact.css'
 
 import swal from 'sweetalert'
+import FormValidate from '../../Services/FormValidate'
 
 const Contact = ()=> {
 
@@ -34,8 +34,8 @@ const Contact = ()=> {
 
     const SendMessage = async ()=>{
         /* eve.preventDefault() */
-
-        await SendEmail(mailData)
+        const Action = 'Contact'
+        await FormValidate(mailData, Action)
             .then(res =>{
 
                 if (res.status === 'false') {
@@ -152,10 +152,11 @@ const Contact = ()=> {
                     </div>
 
                     <div className='contact-location'>
-                    <iframe className='map' title='goole map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7787.
-                        74054056543!2d-69.83120544692837!3d18.528026872092802!2m3!1f0!2f0!3f0!
-                        3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s%2B18.528237-069.828359!
-                        5e0!3m2!1ses-419!2sdo!4v1633902232856!5m2!1ses-419!2sdo" loading="lazy"></iframe>
+                        <iframe className='map' title='goole map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7787.
+                            74054056543!2d-69.83120544692837!3d18.528026872092802!2m3!1f0!2f0!3f0!
+                            3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s%2B18.528237-069.828359!
+                            5e0!3m2!1ses-419!2sdo!4v1633902232856!5m2!1ses-419!2sdo" loading="lazy">
+                        </iframe>
                     </div>
                 </div>
             </div>

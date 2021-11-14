@@ -14,6 +14,7 @@ import { BrowserRouter as Router,
 
 
 import ProjectPage from "./Components/ProjectPage/ProjectPage";
+import Login from "./Components/Login/Login";
 
 function App() {
 
@@ -45,6 +46,10 @@ function App() {
 
             <Route path='/projectDetails'>
               <ProjectPage/>
+            </Route>
+
+            <Route path='/login'>
+              <Login/>
             </Route>
           
           </Switch>

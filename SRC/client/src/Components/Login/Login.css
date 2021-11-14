@@ -1,0 +1,141 @@
+.nav-login-container{ 
+    top: 0;
+    text-align: center;
+    height: 7vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.274);
+}
+
+
+.nav-login-container ul li, .nav-login-container ul li a{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-login-container ul li a{
+    font-size: 1.3rem;
+    padding: 3px;
+    border: solid 2px white;
+    border-radius: 1px;
+
+    transition: all 450ms ease;
+}
+
+.nav-login-container ul li a:hover{
+    padding: 3px 8px 3px 8px;
+}
+
+.login-container{
+    background: linear-gradient(#161429, #26224d);
+    width: 100%;
+    height: 100vh;
+
+    text-align: center;
+}
+
+.login-container h2{
+    color: white;
+    margin: 1rem auto 1rem auto;
+    width: auto;
+}
+
+
+.login{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-login-container{
+    margin: 1rem;
+    background: linear-gradient(#1d193b, #161429);
+    box-shadow: rgba(0, 0, 0, 0.507) 1px 1px 25px 2px;
+    width: 25%;
+    height: 80%;
+    color: white;
+    border-radius: 5px;
+}
+
+.form-login-container .form-login{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-ico{
+    width: 40%;
+    height: 30%;
+    border-radius: 50%;
+    margin: 1rem 0rem 3rem 0rem;
+    background-color: rgba(0, 0, 0, 0.418);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-ico ion-icon{
+    width: 90%;
+    height: 90%;
+}
+
+.input-login-email , .input-login-pass{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    width: 80%;
+}
+
+.input-login-email input, .input-login-pass input{
+    width: 100%;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.input-login-email ion-icon, .input-login-pass ion-icon{
+    width: 30px;
+    height: 30px;
+    /* background-color: rebeccapurple; */
+    margin: 0.5rem;
+}
+
+.btn-login{
+    margin-top: 20%;
+    width: 30%;
+    padding: 0.1rem;
+    cursor: pointer;
+
+    transition: all 350ms ease;
+}
+
+.btn-login:hover{
+    box-shadow: black 1px 1px 3px 1px;
+}
+
+@media only screen and (max-width: 1080px) {
+    .form-login-container{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 360px){
+    .form-login-container{
+        width: 80%;
+    }
+}

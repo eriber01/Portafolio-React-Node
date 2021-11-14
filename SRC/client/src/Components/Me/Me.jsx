@@ -10,8 +10,6 @@ const Me = ()=> {
 
     const HandleAnimation = (scroll)=>{
         if (scroll.ScrollData >= 700) {
-            console.log(scroll.ScrollData);
-
             setClassState('move-all')
         }
     }

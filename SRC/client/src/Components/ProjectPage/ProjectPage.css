@@ -1,27 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-.project-container {
-    scroll-behavior: smooth;
-
-    font-family: 'Roboto', sans-serif;
-}
-
-.project-container h1{
-    text-align: center;
-    padding: 2rem;
-
-    text-decoration: underline;
-}
-
-.nav-container{
-    background-color: black;
-
+.nav-container{ 
+    top: 0;
     text-align: center;
     height: 7vh;
-
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    background-color: black;
 }
 
 
@@ -42,6 +30,19 @@
 
 .nav-container ul li a:hover{
     padding: 3px 8px 3px 8px;
+}
+
+.project-container {
+    scroll-behavior: smooth;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+.project-container h1{
+    text-align: center;
+    padding: 2rem;
+
+    text-decoration: underline;
 }
 
 .project-details-container{
@@ -105,6 +106,9 @@
 }
 
 .tec-text-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 3% 0% 5% 0%;
     text-align: center;
     /* text-decoration: underline; */
@@ -113,8 +117,7 @@
 .tec-text-container .tec-text{
     color: white;
     border: solid;
-    margin: auto;
-    width: 20%;
+    padding: 0.5rem;
 }
 
 .tec-card-container{
@@ -156,4 +159,56 @@
 
 .tec-use h4{
     padding: 1rem;
+}
+
+/* Responsive*/
+@media only screen and (max-width: 700px){
+    .project-details-container{
+        height: auto;
+        flex-direction: column;
+    }
+
+    .project-image{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .project-image img{
+        width: 100%;
+    }
+
+    .project-description{
+        width: 90%;
+        margin-top: 2rem;
+
+        display: block;
+    }
+
+    .project-description p{
+        padding: 1rem 0rem 1rem 0rem;
+    }
+    
+    .tec-project{
+        height: auto;
+    }
+
+    .tec-card-container{
+        flex-direction: column;
+    }
+
+    .tec-project-card{
+        width: 80%;
+        flex-direction: row;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tec-use h4{
+        padding: 0;
+    }
+
+    .tec-project-card:hover{
+        transform: scale(1.06);
+    }
 }
