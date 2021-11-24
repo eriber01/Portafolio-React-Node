@@ -1,4 +1,3 @@
-import LoginService from "./LoginService"
 import SendEmail from "./SendEmail"
 
 
@@ -78,14 +77,14 @@ const FormValidate = async (FormData, Action)=>{
 
             return emailStatus
         }else{
-
+/* 
             const DataLogin = {
                 User: data.email,
                 Pass: data.pass
             }
 
             LoginService(DataLogin)
-
+ */
             emailStatus = {
                 input: 'all',
                 status: 'true'

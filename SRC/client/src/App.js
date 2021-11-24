@@ -6,6 +6,7 @@ import Skill from "./Components/Skill/Skill";
 
 import React, {useState} from "react";
 
+
 import ScrollContext from "./context/ScrollContext";
 import { BrowserRouter as Router, 
   Switch,
@@ -15,6 +16,7 @@ import { BrowserRouter as Router,
 
 import ProjectPage from "./Components/ProjectPage/ProjectPage";
 import Login from "./Components/Login/Login";
+import CMSProject from "./Components/CMS Project/CMSProject";
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
       setScrollState(Math.trunc(window.scrollY))
     }
   }
+
 
   ScrollData()
 
@@ -51,7 +54,10 @@ function App() {
             <Route path='/login'>
               <Login/>
             </Route>
-          
+
+            <Route path='/CMSProject'>
+              <CMSProject/>
+            </Route>
           </Switch>
         </Router>
       </div>

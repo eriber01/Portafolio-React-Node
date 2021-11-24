@@ -1,11 +1,16 @@
 import React, {useState} from 'react'
 import FormValidate from '../../Services/FormValidate'
+import LoginService from '../../Services/LoginService'
+//import {singInWithGoogle} from '../../Services/FirebaseConfig'
+import {useHistory} from 'react-router-dom'
 import './Login.css'
+import swal from 'sweetalert'
+
 
 const Login = () => {
     
     const [LoginInputData, setLoginInputData] = useState({ email: '', pass: ''})
-
+    const History = useHistory()
 
     const HandleLogin = async (event)=>{
         event.preventDefault()
@@ -15,11 +20,28 @@ const Login = () => {
             .then(res =>{
                 if (res.status === 'false') {
                     if (res.input === 'email') {
+                        
                         setLoginInputData({...LoginInputData, email: ''})
                     }else if (res.input === 'pass') {
                         setLoginInputData({...LoginInputData, pass: ''})
                     }
                 }else{
+                    
+                    LoginService(LoginInputData)
+                        .then( res=>{
+
+                            if(res.alert === 'success'){
+                                console.log('success');
+                                History.push('/CMSProject')
+                            }else{
+                                swal({
+                                    text: res.message,
+                                    icon: 'warning'
+                                })
+                            }
+
+                    })
+                    
                     setLoginInputData({...LoginInputData, email: '', pass: ''})
                 }
             })
