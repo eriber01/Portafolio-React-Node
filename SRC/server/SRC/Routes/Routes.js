@@ -1,11 +1,10 @@
 const express = require('express')
-
 const Routes = express.Router()
-
 const SendMails = require('../Controllers/Mail/Nodemailer')
 
-Routes.get('/', async (req, res)=>{
-    res.send({
+
+Routes.get('/login', async (req, res)=>{
+    res.json({
         Name:'Eriber',
         Apellidos: 'Tejeda Amparo'
     })
@@ -14,13 +13,8 @@ Routes.get('/', async (req, res)=>{
 Routes.post('/', async (req, res)=>{
     const emailData = await req.body.data
     /* console.log(emailData.name); */
-    console.log(emailData);
-    /* await SendMails(emailData) */
-})
-
-Routes.post('/login', async (req, res)=>{
-    const loginData = await req.body.data
-    console.log(loginData);
+    //console.log(emailData);
+    await SendMails(emailData)
 })
 
 module.exports = Routes
