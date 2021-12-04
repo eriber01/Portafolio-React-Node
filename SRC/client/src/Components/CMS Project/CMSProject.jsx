@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import {auth} from '../../Services/FirebaseConfig'
+import Page404 from '../404 Page/404-Page'
 
 const CMSProject = ()=>{
 
@@ -16,24 +17,24 @@ const CMSProject = ()=>{
         })
     }, [])
 
-    const l = ()=>{
+/*     const l = ()=>{
         auth.signOut()
-    }
+    } */
 
     return(
         <div>
             {
                 LoginState ? 
                     (
-                        <h1>CMS Project</h1>
+                        <h1>Cms page</h1>
+                        
                     )
                     :
                     (
-                        <h1>No tienes Acceso</h1>
+                        <Page404/>
                     )
             }
-
-            <button onClick={l}>hola</button>
+            
         </div>
         
     )

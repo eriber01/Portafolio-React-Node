@@ -1,0 +1,126 @@
+.page404{
+    background-color: white;
+}
+
+.page404-container{
+    color: #0a2d58;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap');
+
+.page404-nav{
+    width: 100%;
+    height: 2rem;
+    background-color: #b8e4f04f;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page404-nav ul{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-end;
+}
+
+.page404-nav ul li, a{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+
+.page404-nav ul li{
+    padding: 0rem 5rem 0rem 0rem;
+}
+
+.page404-nav ul li a{
+    padding: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+
+.page404-body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.page404-text{
+    width: 100%;
+    height: 100%;
+    padding: 8% 1%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.text-body{
+    width: 100%;
+    height: 100%;
+    margin-top: 2rem;
+    line-height: 25px;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-evenly;
+}
+
+.page404-text h1{
+    font-size: 5rem;
+}
+
+.span-eriber{
+    padding: 2rem 0rem 2rem 0rem;
+}
+
+.page404-body .img-404{
+    width: 80%;
+}
+
+.page404-body .img-404 img{
+    width: 100%;
+}
+
+.page404-btn-login{
+    background-color: #7267CB;
+    color: white;
+    border: none;
+    text-align: center;
+    width: 20%;
+    margin: auto;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.514) 1px 1px 10px;
+}
+
+@media only screen and (max-width: 1000px){
+    .page404-body{
+        flex-direction: column-reverse;
+    }
+
+    .page404-body .img-404{
+        width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page404-body .img-404 img{
+        width: 90%;
+    }
+
+    .page404-btn-login{
+        width: 30%;
+    }
+
+}
