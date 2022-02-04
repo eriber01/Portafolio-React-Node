@@ -6,7 +6,7 @@ const SendMails = async (emailData) =>{
         service: 'gmail',
         auth: {
             user: 'eriber01@gmail.com',
-            pass: 'Anyara@01'
+            pass: 'Anyara@001'
         }
     })
 
