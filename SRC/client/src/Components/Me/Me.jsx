@@ -1,29 +1,17 @@
-import React, {useContext, useState, useEffect} from 'react'
+// import React, {useContext, useState, useEffect} from 'react'
 import './Me.css'
 
-import ScrollContext from '../../context/ScrollContext'
+import { UseActions } from './use-actions'
 
 const Me = ()=> {
-    const context = useContext(ScrollContext)
-    
-    const [ClassState, setClassState] = useState(['me'])
-
-    const HandleAnimation = (scroll)=>{
-        if (scroll.ScrollData >= 700) {
-            setClassState('move-all')
-        }
-    }
-
-    useEffect(() => {
-        HandleAnimation(context)
-    }, [context])
+    const [state, actions] = UseActions()
 
     return (
         <div className='me-container' id='me'>
             <h1>About Me</h1>
 
             <div className='me-card-container'>
-                <div className={`me ${ClassState}`} >
+                <div className={`me ${state?.ClassState}`} >
                     <h3>Me</h3>
                     <p>I am a passionate person with what he likes, a lover of video games, 
                         somewhat shy with people when I do not know them, but super friendly 
@@ -36,7 +24,7 @@ const Me = ()=> {
                 </div>
                 
                 <div className='me-card-tec'>
-                    <div className={`backend ${ClassState}`}>
+                    <div className={`backend ${state?.ClassState}`}>
                         <h3>BackEnd</h3>
                         <p>I am a BackEnd in Node.js, I have worked with technologies such as <strong> Express </strong> for the server, <strong> NodeMailer </strong>
                             for sending Emails, <strong> MongoDB </strong> as a database.
@@ -47,7 +35,7 @@ const Me = ()=> {
                         </p>
                     </div>
                 
-                    <div className={`frontend ${ClassState}`}>
+                    <div className={`frontend ${state?.ClassState}`}>
                         <h3>FrontEnd</h3>
                         <p>I have experience working with <strong> React.js </strong> for handling user interfaces, for databases and
                             Authentication I work with <strong> Firebase </strong> to manage routes, use <strong> React Router DOM </strong>

@@ -5,10 +5,10 @@ import {useHistory} from 'react-router-dom'
 
 const Project = ()=> {
     
-    const History = useHistory()
+    const history = useHistory()
 
     const linkProject = ()=>{
-        History.push('/projectDetails')
+        history.push('/projectDetails')
     }
 
     return (

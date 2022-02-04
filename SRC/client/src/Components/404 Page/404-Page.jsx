@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {useHistory} from 'react-router-dom'
 import './404-Page.css'
 
@@ -7,11 +5,6 @@ const Page404 = ()=> {
 
     const history = useHistory()
 
-    const Login = ()=>{
-        console.log('cerrar');
-        
-        history.push('/login')
-    }
     return (
         <div className='page404'>
             <div className="page404-container">
@@ -38,7 +31,7 @@ const Page404 = ()=> {
 
                             <span className='span-eriber'><strong>Are you Eriber! Playing with the routes again?</strong></span>
 
-                            <a href='/login' onClick={Login} className='page404-btn-login'><strong>LOGIN</strong></a>
+                            <a href='/login' onClick={() => history.push('/login')} className='page404-btn-login'><strong>LOGIN</strong></a>
                         </div>
                     </div>
                 

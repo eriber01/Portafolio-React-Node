@@ -1,18 +1,14 @@
-import {useState} from 'react'
+// import {useState} from 'react'
 import './Contact.css'
 
 import swal from 'sweetalert'
-import FormValidate from '../../Services/FormValidate'
+// import FormValidate from '../../Services/FormValidate'
+
+import { UseActions } from './use-actions'
 
 const Contact = ()=> {
 
-    const [mailData, setmailData] = useState({
-        name: '',
-        lastname:'',
-        email: '',
-        phone: '',
-        message: ''
-    })
+    const [state, actions] = UseActions()
 
     const MessageManage = async (eve)=>{
         eve.preventDefault()
@@ -24,38 +20,13 @@ const Contact = ()=> {
             buttons: ['Cancel', 'Send']
         }).then(res =>{
             if (res) {
-                SendMessage()
+                // SendMessage()
+                actions.SendMessage()
                 swal({text: "se envio el mensaje" , icon: 'success', timer:'2000'})
             }else{
                 swal({text: "Cancelaste el mensaje" , icon: 'warning', timer:'2000'})
             }
         })
-    }
-
-    const SendMessage = async ()=>{
-        /* eve.preventDefault() */
-        const Action = 'Contact'
-        await FormValidate(mailData, Action)
-            .then(res =>{
-
-                if (res.status === 'false') {
-                    if (res.input === 'name') {
-                        setmailData({...mailData, name: ''})
-                    }else if(res.input === 'lastname'){
-                        setmailData({...mailData, lastname: ''})
-                    }else if(res.input === 'email'){
-                        setmailData({...mailData, email: ''})
-                    }else if(res.input === 'phone'){
-                        setmailData({...mailData, phone: ''})
-                    }else if(res.input === 'message'){
-                        setmailData({...mailData, message: ''})
-                    }
-                }else {
-                    setmailData({...mailData, name: '', lastname: '', email: '', phone: '', message: ''})
-                }
-            })
-
-
     }
 
     return (
@@ -66,23 +37,27 @@ const Contact = ()=> {
             <div className='contact'>
                 <div className='form-container'>
                     <h3>Send a Message</h3>
-                    <form onSubmit={MessageManage} action="" autoComplete='off'>
+                    <form onSubmit={MessageManage /*(eve) => {actions.MessageManage('hola mundo')}*/} action="" autoComplete='off'>
                         <div className='input-full-name'>
                             <div className='name-container'>
                                 <label htmlFor="name">Fist Name</label>
-                                <input onChange={(eve)=> setmailData({...mailData, name: eve.target.value})} 
+                                <input onChange={(eve)=> {
+                                    actions.getMessageData(eve.target.value, "name")
+                                }} 
                                     className='name' required={true} placeholder='Example: Juan' type="text" 
                                     name="" id="name"
-                                    value = {mailData.name}
+                                    value = {state?.mailData.name}
                                 />
                             </div>
                             
                             <div className="last-name-container">
                                 <label htmlFor="last-name">Last Name</label>
-                                <input onChange={(eve)=> setmailData({...mailData, lastname: eve.target.value})}
+                                <input onChange={(eve)=> {
+                                    actions.getMessageData(eve.target.value, "lastname")
+                                }}
                                     className='last-name' required={true} placeholder='Example: Perez' type="text"
                                     name="" id="last-name"
-                                    value = {mailData.lastname}
+                                    value = {state?.mailData.lastname}
                                 />
                             </div>
                         </div>
@@ -90,29 +65,35 @@ const Contact = ()=> {
                         <div className='input-contact'>
                             <div className="email-container">
                                 <label htmlFor="email">Email</label>
-                                <input onChange={(eve)=> setmailData({...mailData, email: eve.target.value})} 
+                                <input onChange={(eve)=>{ 
+                                    actions.getMessageData(eve.target.value, "email")
+                                }} 
                                     className='email' required={true} placeholder='Example: email@email.com' 
                                     type="email" name="" id="email" 
-                                    value = {mailData.email}
+                                    value = {state?.mailData.email}
                                 />
                             </div>
                         
                             <div className="phone-container">
                                 <label htmlFor="telephone">Telephone</label>
-                                <input onChange={(eve)=> setmailData({...mailData, phone: eve.target.value})} 
+                                <input onChange={(eve)=>{
+                                    actions.getMessageData(eve.target.value, "phone")
+                                }} 
                                     className='telephone' required={true} placeholder='Phone Number' name="" 
                                     type="tel" id="telephone"
-                                    value = {mailData.phone}
+                                    value = {state?.mailData.phone}
                                 />
                             </div>
                         </div>
 
                         <div className='message'>
                             <label htmlFor="message">Message</label>
-                            <textarea onChange={(eve)=> setmailData({...mailData, message: eve.target.value})}
+                            <textarea onChange={(eve)=> {
+                                actions.getMessageData(eve.target.value, "message")
+                            }}
                                 name="" required={true} placeholder='Write you Message here' ols="30" rows="10" 
                                 id="message"
-                                value = {mailData.message}
+                                value = {state?.mailData.message}
                             ></textarea>
                         </div>
 

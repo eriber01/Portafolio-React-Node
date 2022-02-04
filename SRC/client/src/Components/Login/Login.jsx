@@ -6,46 +6,11 @@ import {useHistory} from 'react-router-dom'
 import './Login.css'
 import swal from 'sweetalert'
 
+import { UseAcions } from './use-actions'
 
 const Login = () => {
     
-    const [LoginInputData, setLoginInputData] = useState({ email: '', pass: ''})
-    const History = useHistory()
-
-    const HandleLogin = async (event)=>{
-        event.preventDefault()
-        
-        const Action = 'Login'
-        await FormValidate(LoginInputData, Action)
-            .then(res =>{
-                if (res.status === 'false') {
-                    if (res.input === 'email') {
-                        
-                        setLoginInputData({...LoginInputData, email: ''})
-                    }else if (res.input === 'pass') {
-                        setLoginInputData({...LoginInputData, pass: ''})
-                    }
-                }else{
-                    
-                    LoginService(LoginInputData)
-                        .then( res=>{
-
-                            if(res.alert === 'success'){
-                                console.log('success');
-                                History.push('/CMSProject')
-                            }else{
-                                swal({
-                                    text: res.message,
-                                    icon: 'warning'
-                                })
-                            }
-
-                    })
-                    
-                    setLoginInputData({...LoginInputData, email: '', pass: ''})
-                }
-            })
-    }
+    const [state, actions] = UseAcions()
 
     return (
         <div className="login-container">
@@ -61,7 +26,7 @@ const Login = () => {
             <div className="login">
 
                 <div className='form-login-container'>
-                    <form onSubmit={HandleLogin} className='form-login' action="">
+                    <form onSubmit={event => actions.HandleLogin(event)} className='form-login' action="">
 
                         <div className='login-ico'>
                             <ion-icon name="person-outline"></ion-icon>
@@ -70,17 +35,21 @@ const Login = () => {
 
                         <div className='input-login-email'>
                             <ion-icon name="person-circle-outline"></ion-icon>
-                            <input onChange={(event) =>setLoginInputData({...LoginInputData, email: event.target.value}) }
+                            <input onChange={(event) =>{
+                                actions.getEmail(event.target.value)
+                            }}
                                 className='email-login' type="email" required={true} 
-                                placeholder='Email' name="email" id="email"  value={LoginInputData.email}
+                                placeholder='Email' name="email" id="email"  value={state?.LoginInputData?.email}
                             />                        
                         </div>         
 
                         <div className='input-login-pass'>
                             <ion-icon name="key-outline"></ion-icon>
-                            <input onChange={(event) =>setLoginInputData({...LoginInputData, pass: event.target.value})}
+                            <input onChange={(event) =>{
+                                actions.getPass(event.target.value)
+                            }}
                                 className='pass-login' type="password" required={true}
-                                placeholder='Password' name="" id="pass"  value={LoginInputData.pass}
+                                placeholder='Password' name="" id="pass"  value={state?.LoginInputData?.pass}
                             />
                         </div>
                         

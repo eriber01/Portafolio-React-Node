@@ -12,6 +12,7 @@ const FormValidate = async (FormData, Action)=>{
         pass: FormData.pass
     }
 
+    // console.log(data);
 
     let emailStatus = {
         input: '',
@@ -62,6 +63,7 @@ const FormValidate = async (FormData, Action)=>{
         }
     }else if (Action === 'Login') {
 
+        console.log(data);
         if (!data.email.trim()) {
             emailStatus = {
                 input: 'email',

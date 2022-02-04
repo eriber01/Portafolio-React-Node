@@ -1,33 +1,12 @@
 import './Home.css'
 
-import {useState} from 'react'
 import { useHistory } from 'react-router' 
 
+import { UseAcions } from './use-actions'
+
 const Home = ()=> {
-    
+    const [state, actions] = UseAcions({})
     const history = useHistory()
-    const [ClassState, setClassState] = useState('NoView-mobil-menu')
-    const [IcoName, setIcoName] = useState('menu-outline')
-
-    const LinkLogin = ()=>{
-        history.push('/login')
-    }
-
-    const MobilMenu = ()=>{
-        console.log('hello');
-
-        if(ClassState === 'NoView-mobil-menu'){
-            setClassState('view-mobil-menu')
-            setIcoName('close-outline')
-        }else{
-            setClassState('NoView-mobil-menu')
-            setIcoName('menu-outline')
-        }
-
-        console.log(ClassState);
-    }
-
-    
 
     return (
         <div className='app-container'>
@@ -35,9 +14,9 @@ const Home = ()=> {
                 <header className='header'>
                     <nav className='nav'>
                         <div className='nav-mobil'>
-                            <ion-icon onClick={MobilMenu} name={IcoName}></ion-icon>
+                            <ion-icon onClick={actions.MobilMenu} name={state?.IcoName}></ion-icon>
                         </div>
-                        <ul className={ClassState}>
+                        <ul className={state?.ClassState}>
                             <li><a href="#me">Me</a></li>
                             <li><a href="#skill">Skill</a></li>
                             <li className='home'><a href="/">HOME</a></li>
@@ -53,7 +32,7 @@ const Home = ()=> {
                         <h3>JavaScript FullStack Developer</h3>
 
                         <div className='login-btn-container'>
-                            <button onClick={LinkLogin} className='login-btn'>Login</button>
+                            <button onClick={()=> history.push('/login')} className='login-btn'>Login</button>
                         </div>
                     </div>
 
