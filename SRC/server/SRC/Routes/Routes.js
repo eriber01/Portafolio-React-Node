@@ -17,4 +17,10 @@ Routes.post('/', async (req, res)=>{
     await SendMails(emailData)
 })
 
+Routes.post('/createProject', async (req, res) =>{
+    const ProjectData = await req.body.data
+    console.log(ProjectData);
+    res.json({status: "success"})
+})
+
 module.exports = Routes
