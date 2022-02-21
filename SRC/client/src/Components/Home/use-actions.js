@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export const UseAcions = () =>{
+export const UseActions = () =>{
 
     const [ClassState, setClassState] = useState('NoView-mobil-menu')
     const [IcoName, setIcoName] = useState('menu-outline')

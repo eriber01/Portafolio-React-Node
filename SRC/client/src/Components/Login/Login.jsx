@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
-import FormValidate from '../../Services/FormValidate'
-import LoginService from '../../Services/LoginService'
+// import React, {useState} from 'react'
+// import FormValidate from '../../Services/FormValidate'
+// import LoginService from '../../Services/LoginService'
 //import {singInWithGoogle} from '../../Services/FirebaseConfig'
-import {useHistory} from 'react-router-dom'
+// import {useHistory} from 'react-router-dom'
 import './Login.css'
-import swal from 'sweetalert'
+// import swal from 'sweetalert'
 
-import { UseAcions } from './use-actions'
+import { UseActions } from './use-actions'
 
 const Login = () => {
     
-    const [state, actions] = UseAcions()
+    const [state, actions] = UseActions()
 
     return (
         <div className="login-container">

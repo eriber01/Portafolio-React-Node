@@ -1,11 +1,9 @@
 import './Home.css'
-
 import { useHistory } from 'react-router' 
-
-import { UseAcions } from './use-actions'
+import { UseActions } from './use-actions'
 
 const Home = ()=> {
-    const [state, actions] = UseAcions({})
+    const [state, actions] = UseActions({})
     const history = useHistory()
 
     return (

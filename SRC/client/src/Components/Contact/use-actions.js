@@ -1,72 +1,72 @@
 import { useState } from "react";
-import swal from 'sweetalert'
+// import swal from 'sweetalert'
 import FormValidate from '../../Services/FormValidate'
 
 
-export const UseActions = () =>{
+export const UseActions = () => {
 
     const [mailData, setmailData] = useState({
         name: '',
-        lastname:'',
+        lastname: '',
         email: '',
         phone: '',
         message: ''
     })
 
-    //trae la data del mensaje
-    const getMessageData = (data, type) =>{
+    //get the data for the message
+    const getMessageData = (data, type) => {
 
         if (type === "name") {
-            setmailData(mailData =>({
+            setmailData(mailData => ({
                 ...mailData,
                 name: data
             }))
-        }else if (type === "lastname") {
-            setmailData(mailData =>({
+        } else if (type === "lastname") {
+            setmailData(mailData => ({
                 ...mailData,
                 lastname: data
             }))
-        }else if (type === "email") {
-            setmailData(mailData =>({
+        } else if (type === "email") {
+            setmailData(mailData => ({
                 ...mailData,
                 email: data
             }))
-        }else if (type === "phone") {
-            setmailData(mailData =>({
+        } else if (type === "phone") {
+            setmailData(mailData => ({
                 ...mailData,
                 phone: data
             }))
-        }else if (type === "message") {
-            setmailData(mailData =>({
+        } else if (type === "message") {
+            setmailData(mailData => ({
                 ...mailData,
                 message: data
             }))
         }
     }
 
-    const SendMessage = async ()=>{
+    const SendMessage = async () => {
         /* eve.preventDefault() */
         const Action = 'Contact'
         await FormValidate(mailData, Action)
-            .then(res =>{
+            .then(res => {
 
                 if (res.status === 'false') {
                     if (res.input === 'name') {
-                        setmailData({...mailData, name: ''})
-                    }else if(res.input === 'lastname'){
-                        setmailData({...mailData, lastname: ''})
-                    }else if(res.input === 'email'){
-                        setmailData({...mailData, email: ''})
-                    }else if(res.input === 'phone'){
-                        setmailData({...mailData, phone: ''})
-                    }else if(res.input === 'message'){
-                        setmailData({...mailData, message: ''})
+                        setmailData({ ...mailData, name: '' })
+                    } else if (res.input === 'lastname') {
+                        setmailData({ ...mailData, lastname: '' })
+                    } else if (res.input === 'email') {
+                        setmailData({ ...mailData, email: '' })
+                    } else if (res.input === 'phone') {
+                        setmailData({ ...mailData, phone: '' })
+                    } else if (res.input === 'message') {
+                        setmailData({ ...mailData, message: '' })
                     }
-                }else {
-                    setmailData({...mailData, name: '', lastname: '', email: '', phone: '', message: ''})
+                } else {
+                    setmailData({ ...mailData, name: '', lastname: '', email: '', phone: '', message: '' })
                 }
             })
     }
 
-    return [{mailData}, {getMessageData, SendMessage}]
+    return [{ mailData }, { getMessageData, SendMessage }]
 }

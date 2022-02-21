@@ -5,7 +5,7 @@ import swal from 'sweetalert'
 import {useHistory} from 'react-router-dom'
 
 
-export const UseAcions = () =>{
+export const UseActions = () =>{
     const [state, actions] = useState({saludo: 'Hola Mundo'})
     const History = useHistory()
 
