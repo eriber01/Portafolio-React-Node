@@ -5,7 +5,7 @@ const SendEmail = async (emailData)=>{
     const data = emailData
     axios({
         method: 'post',
-        url: '/api',
+        url: '/api/sendMail',
         data:{
             data
         }

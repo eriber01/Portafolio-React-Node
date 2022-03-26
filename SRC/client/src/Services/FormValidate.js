@@ -18,7 +18,7 @@ const FormValidate = async (FormData, Action) => {
         pLink: FormData.pLink
     }
 
-    // console.log(data);
+    console.log(data);
 
     let emailStatus = {
         input: '',

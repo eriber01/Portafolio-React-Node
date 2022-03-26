@@ -5,7 +5,7 @@ import { UseActions } from './use-actions'
 const Home = ()=> {
     const [state, actions] = UseActions({})
     const history = useHistory()
-
+    
     return (
         <div className='app-container'>
             <div className='home-container'>

@@ -31,9 +31,9 @@ const CMSProject = () => {
                                     {<img className='cms-img-me' src="img/min-img-me.jpg" alt="" />}
                                     <div className="cms-nav-options">
                                         <ul>
-                                            <li onClick={() => actions.handleMenu('create')}>Create</li>
-                                            <li onClick={() => actions.handleMenu('update')}>Update</li>
-                                            <li onClick={() => actions.handleMenu('delete')}>Delete</li>
+                                            <li onClick={() => actions.onChange('create', 'crud')}>Create</li>
+                                            <li onClick={() => actions.onChange('update', 'crud')}>Update</li>
+                                            <li onClick={() => actions.onChange('delete', 'crud')}>Delete</li>
                                         </ul>
                                     </div>
                                 </div>

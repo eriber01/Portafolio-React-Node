@@ -1,58 +1,40 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { auth } from "../../Services/FirebaseConfig";
+
+import { useImmerReducer } from 'use-immer'
 
 import Create from '../CRUD/Create/Create'
 import Delete from '../CRUD/Delete/Delete'
 import Update from '../CRUD/Update/Update'
 
+import actionsReducer, { initialState } from "./reducer";
+
 export const UseActions = () => {
-    const [state, setActions] = useState({
-        authenticate: null,
-        crud: 'create'
-    })
+
+    const [state, dispatch] = useImmerReducer(actionsReducer, initialState)
+
+    const onChange = (data, path) => {
+        // console.log(data);
+        dispatch({
+            type: 'CHANGE_VALUE',
+            value: data,
+            path: path
+        })
+    }
 
     useEffect(() => {
         // validate the user login
         auth.onAuthStateChanged(async (user) => {
             if (user) {
                 console.log('is authenticate');
-                // setLoginState(user.email)
-                setActions(state => ({
-                    ...state,
-                    authenticate: user.email
-                }))
+                onChange(user.email, 'authenticate')
+
             } else {
                 console.log('is not login');
-                setActions(state => ({
-                    ...state,
-                    authenticate: null
-                }))
+                onChange(null, 'authenticate')
             }
         })
-    }, []);
-
-
-    //handle the change of the menu
-    const handleMenu = menu => {
-        console.log(menu);
-        if (menu === 'create') {
-            setActions(state => ({
-                ...state,
-                crud: menu
-            }))
-        } else if (menu === 'update') {
-            setActions(state => ({
-                ...state,
-                crud: menu
-            }))
-
-        } else if (menu === 'delete') {
-            setActions(state => ({
-                ...state,
-                crud: menu
-            }))
-        }
-    }
+    });
 
     //change de crud operation display
     const crudSelected = val => {
@@ -73,5 +55,5 @@ export const UseActions = () => {
         auth.signOut()
     }
 
-    return [{ state }, { handleMenu, crudSelected, LogOut }]
+    return [{ state }, { crudSelected, LogOut, onChange, dispatch }]
 }
