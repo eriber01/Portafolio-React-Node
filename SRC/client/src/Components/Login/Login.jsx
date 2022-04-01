@@ -9,9 +9,9 @@ import './Login.css'
 import { UseActions } from './use-actions'
 
 const Login = () => {
-    
-    const [state, actions] = UseActions()
 
+    const [{ state }, actions] = UseActions()
+    console.log(state);
     return (
         <div className="login-container">
 
@@ -22,7 +22,7 @@ const Login = () => {
             </nav>
 
             <h2>Hello Eriber Tejeda Amparo</h2>
-            
+
             <div className="login">
 
                 <div className='form-login-container'>
@@ -31,28 +31,28 @@ const Login = () => {
                         <div className='login-ico'>
                             <ion-icon name="person-outline"></ion-icon>
                         </div>
-                        
+
 
                         <div className='input-login-email'>
                             <ion-icon name="person-circle-outline"></ion-icon>
-                            <input onChange={(event) =>{
-                                actions.getEmail(event.target.value)
+                            <input onChange={({ target }) => {
+                                actions.onChange(target.value, 'email')
                             }}
-                                className='email-login' type="email" required={true} 
-                                placeholder='Email' name="email" id="email"  value={state?.LoginInputData?.email}
-                            />                        
-                        </div>         
+                                className='email-login' type="email" /* required={true} */
+                                placeholder='Email' name="email" id="email" value={state?.email}
+                            />
+                        </div>
 
                         <div className='input-login-pass'>
                             <ion-icon name="key-outline"></ion-icon>
-                            <input onChange={(event) =>{
-                                actions.getPass(event.target.value)
+                            <input onChange={({ target }) => {
+                                actions.onChange(target.value, 'pass')
                             }}
-                                className='pass-login' type="password" required={true}
-                                placeholder='Password' name="" id="pass"  value={state?.LoginInputData?.pass}
+                                className='pass-login' type="password" /* required={true} */
+                                placeholder='Password' name="" id="pass" value={state?.pass}
                             />
                         </div>
-                        
+
                         <input className='btn-login' type="submit" value="Login" />
                     </form>
                 </div>

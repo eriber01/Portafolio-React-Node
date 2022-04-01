@@ -25,76 +25,7 @@ const FormValidate = async (FormData, Action) => {
         status: ''
     }
 
-    if (Action === 'Contact') {
-        if (!data.name.trim()) {
-            emailStatus = {
-                input: 'name',
-                status: 'false'
-            }
-            return emailStatus
-        } else if (!data.lastname.trim()) {
-            emailStatus = {
-                input: 'lastname',
-                status: 'false'
-            }
-            return emailStatus
-        } else if (!data.email.trim()) {
-            emailStatus = {
-                input: 'email',
-                status: 'false'
-            }
-            return emailStatus
-        } else if (!data.phone.trim()) {
-            emailStatus = {
-                input: 'phone',
-                status: 'false'
-            }
-            return emailStatus
-        } else if (!data.message.trim()) {
-            emailStatus = {
-                input: 'message',
-                status: 'false'
-            }
-            return emailStatus
-        } else {
-
-            SendEmail(data)
-
-            emailStatus = {
-                input: 'all',
-                status: 'true'
-            }
-
-            return emailStatus
-        }
-    } else if (Action === 'Login') {
-
-        console.log(data);
-        if (!data.email.trim()) {
-            emailStatus = {
-                input: 'email',
-                status: 'false'
-            }
-
-            return emailStatus
-        } else if (!data.pass.trim()) {
-            emailStatus = {
-                input: 'pass',
-                status: 'false'
-            }
-
-            return emailStatus
-        } else {
-
-            emailStatus = {
-                input: 'all',
-                status: 'true'
-            }
-
-            return emailStatus
-        }
-
-    } else if (Action === 'Project') {
+    if (Action === 'Project') {
         if (!data.pName.trim()) {
             emailStatus = {
                 input: 'pName',
@@ -119,7 +50,7 @@ const FormValidate = async (FormData, Action) => {
                 status: false
             }
             return emailStatus
-        }else {
+        } else {
             emailStatus = {
                 input: 'all',
                 status: true

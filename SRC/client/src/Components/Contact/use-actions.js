@@ -1,9 +1,11 @@
-import { useState } from "react";
-// import swal from 'sweetalert'
-import FormValidate from '../../Services/FormValidate'
+// import { useState } from "react";
+import swal from 'sweetalert'
+// import FormValidate from '../../Services/FormValidate'
 import { useImmerReducer } from "use-immer";
+import SendEmail from "../../Services/SendEmail";
 
-import actionsReducer, { initialState } from './reducer'
+import actionsReducer, { initialState, schemaContact } from './reducer'
+import { toast } from "react-toastify";
 
 export const UseActions = () => {
 
@@ -17,35 +19,36 @@ export const UseActions = () => {
         })
     }
 
-    const SendMessage = async () => {
-        /* eve.preventDefault() */
-        const Action = 'Contact'
-        await FormValidate(state, Action)
-            .then(res => {
+    const SendMessage = async (eve) => {
+        eve.preventDefault()
 
-                if (res.status === 'false') {
-                    if (res.input === 'name') {
-                        // setmailData({ ...mailData, name: '' })
-                        onChange('', 'name')
-                    } else if (res.input === 'lastname') {
-                        onChange('', 'lastname')
-                        // setmailData({ ...mailData, lastname: '' })
-                    } else if (res.input === 'email') {
-                        onChange('', 'email')
-                        // setmailData({ ...mailData, email: '' })
-                    } else if (res.input === 'phone') {
-                        onChange('', 'phone')
-                        // setmailData({ ...mailData, phone: '' })
-                    } else if (res.input === 'message') {
-                        onChange('', 'message')
-                        // setmailData({ ...mailData, message: '' })
-                        // dispatch({ type: "DEFAULT_STATE" })
-                    }
-                } else {
-                    // setmailData({ ...mailData, name: '', lastname: '', email: '', phone: '', message: '' })
+        try {
+            const payload = await schemaContact.validate({
+                ...state
+            })
+
+            swal({
+                title: 'Send Message',
+                text: 'Are you sure to send the message?',
+                icon: 'warning',
+                buttons: ['Cancel', 'Send']
+            }).then(res => {
+                if (res) {
+                    SendEmail(payload)
                     dispatch({ type: "DEFAULT_STATE" })
+                    // swal({ text: "se envio el mensaje", icon: 'success', timer: '2000' })
+                } else {
+                    dispatch({ type: "DEFAULT_STATE" })
+                    swal({ text: "Cancelaste el mensaje", icon: 'warning', timer: '2000' })
                 }
             })
+
+        } catch (error) {
+            const text = JSON.stringify(error)
+            const text2 = JSON.parse(text)
+            toast.error(text2.message)
+        }
+
     }
 
     return [{ state }, { SendMessage, onChange, dispatch }]

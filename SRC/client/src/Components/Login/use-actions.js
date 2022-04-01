@@ -1,83 +1,59 @@
-import { useState, useEffect } from "react";
-import FormValidate from '../../Services/FormValidate'
+// import { useState, useEffect } from "react";
+// import FormValidate from '../../Services/FormValidate'
 import LoginService from '../../Services/LoginService'
-import swal from 'sweetalert'
-import {useHistory} from 'react-router-dom'
+// import swal from 'sweetalert'
+import { useHistory } from 'react-router-dom'
+
+import { useImmerReducer } from "use-immer";
+
+import actionsReducer, { initialState, schemaLogin } from "./reducer";
+import { toast } from "react-toastify";
 
 
-export const UseActions = () =>{
-    const [state, actions] = useState({saludo: 'Hola Mundo'})
-    const History = useHistory()
+export const UseActions = () => {
+    const [state, dispatch] = useImmerReducer(actionsReducer, initialState)
+    const history = useHistory()
 
-    const [LoginInputData, setLoginInputData] = useState({email: "", pass: ""})
-
-    const getEmail = email =>{
-        setLoginInputData(LoginInputData =>({
-            ...LoginInputData, 
-            email: email
-        }))
+    const onChange = (data, path) => {
+        dispatch({
+            type: 'CHANGE_FIELD',
+            payload: data,
+            path: path
+        })
     }
 
-    const getPass = pass =>{
-        setLoginInputData(LoginInputData =>({
-            ...LoginInputData,
-            pass: pass
-        }))
-    }
-    console.log(LoginInputData);
-
-
-    const HandleLogin = async (event)=>{
+    const HandleLogin = async (event) => {
         event.preventDefault()
-        
-        const Action = 'Login'
-        await FormValidate(LoginInputData, Action)
-            .then(res =>{
-                if (res.status === 'false') {
-                    if (res.input === 'email') {                        
-                        // actions.getEmail("")
-                        setLoginInputData(LoginInputData =>({
-                            ...LoginInputData,
-                            email: ""
-                        }))
-                    }else if (res.input === 'pass') {
-                        // actions.getPass("")
 
-                        setLoginInputData(LoginInputData =>({
-                            ...LoginInputData,
-                            pass: ""
-                        }))
-                    }
-                }else{
-                    
-                    LoginService(/*LoginInputData*/LoginInputData)
-                        .then( res=>{
-
-                            if(res.alert === 'success'){
-                                console.log('success');
-                                History.push('/CMSProject')
-                            }else{
-                                swal({
-                                    text: res.message,
-                                    icon: 'warning'
-                                })
-                            }
-
-                    })
-                    
-                    // actions.getPass("")
-                    // actions.getEmail("")
-
-                    setLoginInputData(LoginInputData =>({
-                        ...LoginInputData,
-                        email: "",
-                        pass: ""
-                    }))
-                }
+        try {
+            const payload = await schemaLogin.validate({
+                ...state
             })
+
+            LoginService(payload)
+                .then(res => {
+                    if (res.alert === 'success') {
+                        toast.success(res.message)
+                        history.push('/CMSProject')
+                    } else {
+                        dispatch({
+                            type: 'DEFAULT_VALUE'
+                        })
+                        toast.error(res.message)
+                    }
+
+                })
+
+        } catch (error) {
+
+            const text = JSON.stringify(error)
+            const text2 = JSON.parse(text)
+            dispatch({
+                type: 'DEFAULT_VALUE'
+            })
+            toast.error(text2.message)
+        }
     }
 
-
-
-    return [{state, LoginInputData}, {getEmail, getPass, HandleLogin}]
+    return [{ state }, { dispatch, onChange, HandleLogin }]
 }

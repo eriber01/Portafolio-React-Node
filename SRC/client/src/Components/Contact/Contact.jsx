@@ -1,52 +1,44 @@
 // import {useState} from 'react'
 import './Contact.css'
 
-import swal from 'sweetalert'
-// import FormValidate from '../../Services/FormValidate'
-
+import {/*  ToastContainer,  */toast } from 'react-toastify'
 import { UseActions } from './use-actions'
 
 const Contact = () => {
 
-    const [{state}, actions] = UseActions()
+    // const notify = () => toast('🦄 Wow so easy!', {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: true,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    // });
 
-    console.log(state);
+    // const click = () =>{
+    //     toast.error('asdhgahsdgjashgdjagsdh')
+    // }
 
-    const MessageManage = async (eve) => {
-        eve.preventDefault()
-
-        swal({
-            title: 'Send Message',
-            text: 'Are you sure to send the message?',
-            icon: 'warning',
-            buttons: ['Cancel', 'Send']
-        }).then(res => {
-            if (res) {
-                // SendMessage()
-                actions.SendMessage()
-                swal({ text: "se envio el mensaje", icon: 'success', timer: '2000' })
-            } else {
-                swal({ text: "Cancelaste el mensaje", icon: 'warning', timer: '2000' })
-            }
-        })
-    }
+    const [{ state }, actions] = UseActions()
 
     return (
         <div className='contact-container' id='contact'>
 
             <h1>Contact Me</h1>
-
+            {/* <button onClick={click}>click</button> */}
             <div className='contact'>
                 <div className='form-container'>
                     <h3>Send a Message</h3>
-                    <form onSubmit={MessageManage /*(eve) => {actions.MessageManage('hola mundo')}*/} action="" autoComplete='off'>
+                    <form onSubmit={(eve) => actions.SendMessage(eve) /* MessageManage(eve) */} action="" autoComplete='off'>
                         <div className='input-full-name'>
                             <div className='name-container'>
-                                <label htmlFor="name">Fist Name</label>
+                                <label htmlFor="name">First Name</label>
                                 <input onChange={(eve) => {
                                     actions.onChange(eve.target.value, 'name')
                                 }}
-                                    className='name' required={true} placeholder='Example: Juan' type="text"
+                                    className='name' //required={true} 
+                                    placeholder='Example: Juan' type="text"
                                     name="" id="name"
                                     value={state?.name}
                                 />
@@ -57,7 +49,8 @@ const Contact = () => {
                                 <input onChange={(eve) => {
                                     actions.onChange(eve.target.value, 'lastname')
                                 }}
-                                    className='last-name' required={true} placeholder='Example: Perez' type="text"
+                                    className='last-name' //required={true} 
+                                    placeholder='Example: Perez' type="text"
                                     name="" id="last-name"
                                     value={state?.lastname}
                                 />
@@ -70,7 +63,8 @@ const Contact = () => {
                                 <input onChange={(eve) => {
                                     actions.onChange(eve.target.value, 'email')
                                 }}
-                                    className='email' required={true} placeholder='Example: email@email.com'
+                                    className='email' //required={true} 
+                                    placeholder='Example: email@email.com'
                                     type="email" name="" id="email"
                                     value={state?.email}
                                 />
@@ -81,7 +75,8 @@ const Contact = () => {
                                 <input onChange={(eve) => {
                                     actions.onChange(eve.target.value, 'phone')
                                 }}
-                                    className='telephone' required={true} placeholder='Phone Number' name=""
+                                    className='telephone' //required={true} 
+                                    placeholder='Phone Number' name=""
                                     type="tel" id="telephone"
                                     value={state?.phone}
                                 />
@@ -93,7 +88,8 @@ const Contact = () => {
                             <textarea onChange={(eve) => {
                                 actions.onChange(eve.target.value, 'message')
                             }}
-                                name="" required={true} placeholder='Write you Message here' ols="30" rows="10"
+                                name="" //required={true} 
+                                placeholder='Write you Message here' ols="30" rows="10"
                                 id="message"
                                 value={state?.message}
                             ></textarea>
