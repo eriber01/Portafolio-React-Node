@@ -30,7 +30,7 @@ Routes.post('/sendMail', async (req, res) => {
     const emailData = await req.body.data
     /* console.log(emailData.name); */
     //console.log(emailData);
-    await SendMails(emailData)
+    await SendMails(emailData, res)
 })
 
 Routes.post('/createProject', async (req, res) => {

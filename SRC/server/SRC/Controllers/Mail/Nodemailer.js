@@ -1,6 +1,6 @@
 const Nodemailer = require('nodemailer')
 
-const SendMails = async (emailData) =>{
+const SendMails = async (emailData, res) => {
 
     const transporter = Nodemailer.createTransport({
         service: 'gmail',
@@ -24,13 +24,22 @@ const SendMails = async (emailData) =>{
         `
     }
 
-    await transporter.sendMail(MailData, (err, info)=>{
-        if(err){
+    await transporter.sendMail(MailData, (err, info) => {
+        if (err) {
             console.log('no se pudo enviar el mensajasde' + err);
-            //res.status(500).send(`no se pudo enviar el mensaje ${err}`)
-        }else{
+            // res.status(500).send(err)
+            return res.json({
+                status: 'error',
+                response: err
+            })
+        } else {
             console.log('se envio el mensaje');
-            //res.status(200).send(`Se envio el mensaje ${info}`)
+            // res.status(200).send(info)
+
+            return res.json({
+                status: 'success',
+                response: info
+            })
         }
     })
 }

@@ -11,6 +11,7 @@
   "author": "Eriber Tejeda Amparo",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.2.3",
