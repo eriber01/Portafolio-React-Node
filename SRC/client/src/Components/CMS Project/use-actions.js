@@ -3,9 +3,9 @@ import { auth } from "../../Services/FirebaseConfig";
 
 import { useImmerReducer } from 'use-immer'
 
-import Create from '../CRUD/Create/Create'
-import Delete from '../CRUD/Delete/Delete'
-import Update from '../CRUD/Update/Update'
+import Create from './CRUD/Create/Create'
+import Delete from './CRUD/Delete/Delete'
+import Update from './CRUD/Update/Update'
 
 import actionsReducer, { initialState } from "./reducer";
 
@@ -55,5 +55,10 @@ export const UseActions = () => {
         auth.signOut()
     }
 
-    return [{ state }, { crudSelected, LogOut, onChange, dispatch }]
+    const onSave = (eve) => {
+        eve.preventDefault()
+        console.log(state);
+    }
+
+    return [{ state }, { crudSelected, LogOut, onChange, dispatch, onSave }]
 }

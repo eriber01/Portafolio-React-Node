@@ -11,7 +11,6 @@ import { UseActions } from './use-actions'
 const Login = () => {
 
     const [{ state }, actions] = UseActions()
-    console.log(state);
     return (
         <div className="login-container">
 
