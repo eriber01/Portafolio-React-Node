@@ -1,20 +1,20 @@
 import './ProjectPage.css'
 
-const ProjectPage = () =>{
+const ProjectPage = () => {
 
     return (
         <div id='project' className='project-container'>
-        
+
             <nav className='nav-container'>
                 <ul>
                     <li><a href="/">HOME</a></li>
                 </ul>
             </nav>
-            
+
             <h1>Project Name</h1>
-            
+
             <div className='project-details-container'>
-                
+
                 <div className='project-image'>
                     <img src="img/ejercitate.JPG" alt="" />
                 </div>
@@ -23,17 +23,22 @@ const ProjectPage = () =>{
 
                     <h2>Description Project</h2>
 
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
-                    </p>
-                    
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
-                    </p>
-                    
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
-                    </p>
+                    <div className='project-description-group-1'>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
+                        </p>
+
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
+                        </p>
+                    </div>
+
+                    <div className='project-description-group-2'>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, dicta. Sint dolorum velit, blanditiis nesciunt magnam.
+                        </p>
+                    </div>
+
                 </div>
             </div>
 
@@ -48,7 +53,7 @@ const ProjectPage = () =>{
                         <img className='img-tec' src="img/nodejs.png" alt="" />
 
                         <div className='tec-use'>
-                        <h4>Tec Name</h4>
+                            <h4>Tec Name</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea incidunt perferendis</p>
                         </div>
                     </div>

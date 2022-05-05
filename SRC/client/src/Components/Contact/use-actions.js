@@ -6,6 +6,7 @@ import SendEmail from "../../Services/SendEmail";
 
 import actionsReducer, { initialState, schemaContact } from './reducer'
 import { toast } from "react-toastify";
+import { OnError } from '../../Services/OnError';
 
 export const UseActions = () => {
 
@@ -44,9 +45,7 @@ export const UseActions = () => {
             })
 
         } catch (error) {
-            const text = JSON.stringify(error)
-            const text2 = JSON.parse(text)
-            toast.error(text2.message)
+            OnError(error)
         }
 
     }

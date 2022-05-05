@@ -8,6 +8,7 @@ import { useImmerReducer } from "use-immer";
 
 import actionsReducer, { initialState, schemaLogin } from "./reducer";
 import { toast } from "react-toastify";
+import { OnError } from '../../Services/OnError';
 
 
 export const UseActions = () => {
@@ -45,13 +46,7 @@ export const UseActions = () => {
                 })
 
         } catch (error) {
-
-            const text = JSON.stringify(error)
-            const text2 = JSON.parse(text)
-            dispatch({
-                type: 'DEFAULT_VALUE'
-            })
-            toast.error(text2.message)
+            OnError(error)
         }
     }
 

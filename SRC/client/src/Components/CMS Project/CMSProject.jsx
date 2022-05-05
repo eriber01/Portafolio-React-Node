@@ -8,12 +8,12 @@ import { UseActions } from './use-actions'
 import './CMSProject.css'
 
 const CMSProject = () => {
-    const [{ state }, actions] = UseActions()
-
+    const [{ state, authenticate } , actions] = UseActions()
+    // console.log(authenticate);
     return (
         <div>
             {
-                state?.authenticate ?
+                authenticate?.isAuthenticate ?
                     (
                         <div className="cms-container">
                             <header className='cms-header'>
