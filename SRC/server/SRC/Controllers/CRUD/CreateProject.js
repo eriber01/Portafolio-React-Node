@@ -1,29 +1,61 @@
 const ProductModel = require('../../Models/projects')
 
+//upload the image
+const CloudinaryConfig = require('../../Config/cloudinaryConfig')
+const Cloudinary = require('cloudinary')
+Cloudinary.config(CloudinaryConfig)
+
+//handle the images file
+const fs_extra = require('fs-extra')
+
 const CreateProject = async (data, res) => {
 
-    // const date = new Date()
-    // const id = date.getFullYear().toString() + (date.getMonth() + 1).toString() + (date.getDay() + 1).toString() + (date.getMilliseconds() * 5).toString()
+    // console.log(data);
 
-    console.log(data);
+    let arrayImage = []
+    let imageLink = []
+    await arrayImage.push(data.files.file0, data.files.file1, data.files.file2, data.files.file3)
+    console.log(arrayImage);
+    // console.log(arrayImage.length)
+    for (let i = 0; i < arrayImage.length; i++) {
+        const element = arrayImage[i];
+        console.log(element);
+
+        const imageData = await Cloudinary.v2.uploader.upload(element[0].path)
+        imageLink.push(imageData.url)
+
+        await fs_extra.unlink(element[0].path)
+    }
+
+
+    console.log(imageLink);
 
     let newProject = new ProductModel({
-        // id: id,
-        projectName: data.pName,
-        // projectDescription:  
-        projectResume: data.pInfo,
-        linkCode: data.pGit,
-        linkLocation: data.pLink
+
+        projectName: data.body.projectName,
+        linkLocation: data.body.linkLocation,
+        linkCode: data.body.linkCode,
+        projectDescription1: data.body.projectDescription1,
+        projectDescription2: data.body.projectDescription2,
+        projectDescription3: data.body.projectDescription3,
+        projectResume: data.body.projectResume,
+        imgProjectPrincipal: imageLink[0],
+        imgProjectDetails1: imageLink[1],
+        imgProjectDetails2: imageLink[2],
+        imgProjectDetails3: imageLink[3],
+        textProjectDetails1: data.body.textProjectDetails1,
+        textProjectDetails2: data.body.textProjectDetails2,
+        textProjectDetails3: data.body.textProjectDetails3,
     })
 
-    newProject.save((err, result) => {
+    await newProject.save((err, result) => {
         if (err) {
-            res.json({
+            return res.json({
                 status: 'error',
                 crud: 'create'
             })
         } else {
-            res.json({
+            return res.json({
                 status: 'success',
                 crud: 'create'
             })
