@@ -6,6 +6,7 @@ const SendMails = require('../Controllers/Mail/Nodemailer')
 
 const ProjectModel = require('../Models/projects')
 
+const techSelectData = require('../Models/techSelectData')
 //Constructors
 //Create Project
 const CreateProject = require('../Controllers/CRUD/CreateProject')
@@ -18,16 +19,16 @@ Routes.get('/login', async (req, res) => {
 })
 
 Routes.get('/postman', async (req, res) => {
+
     res.json({
-        saludo: 'hola mundo'
+        saludo: req.body
     })
 })
 
 Routes.post('/createProject', async (req, res) => {
-    // console.log(req.files);
     // await CreateProject(req, res)
-
-    // res.json({ status: "success" })
+    console.log(JSON.parse(req.body.array));
+    res.json({ status: "success", data: req.body })
 
 })
 
@@ -38,26 +39,13 @@ Routes.post('/sendMail', async (req, res) => {
     await SendMails(emailData, res)
 })
 
-Routes.post('/image', async (req, res) => {
-    // const ProjectData = await req.body.data
-    console.log(req.files)
-
-//     let sampleFile;
-//     let uploadPath;
-
-//     sampleFile = await req.files.image
-//     console.log(sampleFile.name);
-//     uploadPath = path.join(__dirname);
-//     console.log(uploadPath);
-//    await sampleFile.mv(uploadPath, function (err) {
-//         if (err)
-//             return res.status(500).send(err);
-
-//         res.send('File uploaded!');
-//     });
-    // const { file } = req
-    // console.log(file);
-    res.json({ status: "success" })
+Routes.get('/getTechSelect', async (req, res) => {
+    // console.log(req)
+    
+    const data = await techSelectData.find()
+    // console.log(data2);
+    res.json({data})
+    
 })
 
 

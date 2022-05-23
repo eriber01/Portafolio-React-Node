@@ -15,11 +15,11 @@ const CreateProject = async (data, res) => {
     let arrayImage = []
     let imageLink = []
     await arrayImage.push(data.files.file0, data.files.file1, data.files.file2, data.files.file3)
-    console.log(arrayImage);
+    // console.log(arrayImage);
     // console.log(arrayImage.length)
     for (let i = 0; i < arrayImage.length; i++) {
         const element = arrayImage[i];
-        console.log(element);
+        // console.log(element);
 
         const imageData = await Cloudinary.v2.uploader.upload(element[0].path)
         imageLink.push(imageData.url)
@@ -28,7 +28,7 @@ const CreateProject = async (data, res) => {
     }
 
 
-    console.log(imageLink);
+    // console.log(imageLink);
 
     let newProject = new ProductModel({
 
@@ -55,6 +55,8 @@ const CreateProject = async (data, res) => {
                 crud: 'create'
             })
         } else {
+            const id = newProject._id
+            console.log(id)
             return res.json({
                 status: 'success',
                 crud: 'create'
