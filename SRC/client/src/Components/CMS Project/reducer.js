@@ -37,13 +37,22 @@ export const initialState = {
     textProjectDetails1: '',
     textProjectDetails2: '',
     textProjectDetails3: '',
-
+    //select data array
+    selectData: [],
+    selectedTech: [],
+    techDescriptions: '',
+    
 }
 
 export default function actionsReducer(state, actions) {
     switch (actions.type) {
         case "CHANGE_VALUE":
             state[actions.path] = actions.value
+            return;
+        case "ADD_TECH":
+            state[actions.path].push(actions.value)
+
+
             return;
         default:
             return;

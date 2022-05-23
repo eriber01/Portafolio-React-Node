@@ -1,45 +1,11 @@
 import './Create.css'
-import axios from 'axios'
-import { useState } from 'react'
 import { UseActions } from '../../use-actions.js'
-import { ProjectManagement } from '../../../../Services/ProjectManagement'
+// import { ProjectManagement } from '../../../../Services/ProjectManagement'
+import TechTable from '../components/techTable'
 
 const Create = () => {
     const [{ state }, actions] = UseActions()
-    // console.log(state);
-    const [file, setFile] = useState()
 
-    const sendImage = async (e) => {
-        e.preventDefault()
-
-        console.log(e);
-
-        // setFile(e.target.files[0]);
-        // const formData = new FormData();
-        // formData.append('file', file)
-        // // const res = await axios.post('/api/image', e.target.files[0])
-
-        const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        let fd = new FormData();
-        fd.append('file0', e.target[2].files[0])
-        fd.append('file1', e.target[5].files[0])
-        fd.append('file2', e.target[7].files[0])
-        fd.append('file3', e.target[9].files[0])
-        fd.append('n', 'hola mundo')
-
-        // const new1 = {
-        //     name:  'hola',
-        //     fd: fd
-        // }
-        const res = await axios.post("/api/createProject", fd, config)
-
-
-        console.log(res);
-
-        // await ProjectManagement('create', formData)
-    }
-
-    console.log(file);
     return (
         <div className='create-container'>
             <h1>Create to Project</h1>
@@ -165,32 +131,54 @@ const Create = () => {
                             value={state.linkLocation}
                         />
                     </div>
-                    {
-                        // <div className="project-img">
-                        //     <label htmlFor="project-img">Project Image</label>
-                        //     <input type="file" name="" id="project-img" placeholder='Project Image' />
-                        // </div>
-                    }
 
                     {/* here the input of technologies */}
 
                     <div className='project-info'>
                         <label htmlFor="">Project Technology</label>
-                        <select name="selectTechnology" id="" onChange={(e) =>console.log(e.target.value)}>
-                            <option value="1">React</option>
-                            <option value="2">Node.js</option>
-                            <option value="3">Express</option>
-                        </select>
 
-                        <label htmlFor="">Descriptions use Technology</label>
-                        <input type="text" placeholder='Descriptions use Technology' />
+                        <div>
+                            <select name="selectTechnology"
+                                value={state.techSelectedId || ''}
+                                onChange={({ target: { value } }) =>
+                                    actions.onChange(value, 'techSelectedId')
+                                }
+                            >
 
-                        <button>Add</button>
+                                <option disabled hidden value={''}>
+                                    Select one Tech
+                                </option>
+                                {
+                                    state.selectData.map(item =>
+
+                                        <option
+                                            key={item._id} value={item._id}
+                                        >
+                                            {item.techName}
+                                        </option>
+
+                                    )
+                                }
+
+                            </select>
+
+
+                            <label htmlFor="">Descriptions use Technology</label>
+                            <input type="text"
+                                value={state.techDescriptions}
+                                placeholder='Descriptions use Technology'
+                                onChange={({ target: { value } }) => actions.onChange(value, 'techDescriptions')}
+                            />
+
+                            <button onClick={(e) => actions.addTechCache(e)}>Add</button>
+                        </div>
+
+                        <div>
+                            <TechTable data={state.selectedTech} actions={actions} />
+                        </div>
                     </div>
 
-                    <button /* onClick={(eve) => {
-                        sendImage(eve)
-                    }} */>Create Project</button>
+                    <button>Create Project</button>
                 </form>
             </div>
         </div>
